@@ -9,9 +9,23 @@ const misDatos = {
         "moisescamposdaw@gmail.com", 
         "(+34) 603 123 456",
         "Canarias, España",
-        "<a href='https://www.linkedin.com/in/moisescap/'><img src='img/linkedin.png' width='26px'></a>",
-        "<a href='https://github.com/MoisesCDAW'><img src='img/github.png' width='26px'></a>",
-        "<a href='https://www.instagram.com/moisescamposp/'><img src='img/instagram.png' width='26px'></a>"
+        "https://www.linkedin.com/in/moisescap/",
+        "https://github.com/MoisesCDAW",
+        "https://www.instagram.com/moisescamposp/",
+        "img/linkedin.png",
+        "img/github.png",
+        "img/instagram.png"
+    ],
+    conocimientos: [
+        "img/skills/java.png",
+        "img/skills/javascript.png",
+        "img/skills/mysql.png",
+        "img/skills/php.png",
+        "img/skills/html.png",
+        "img/skills/css.png",
+        "img/skills/Bootstrap.png",
+        "img/skills/tailwind.png",
+        "img/skills/vuejs.png",
     ],
     estudios: [
         {
@@ -131,7 +145,6 @@ function datosPersonales(body, enlaceScript) {
     }
 
     // Crea <div> "social"
-    contador = 7;
     contenedor_dato = document.createElement("div");
     contenedor_dato.classList.add("dato");
     contenedor_datosPerso.appendChild(contenedor_dato);
@@ -141,11 +154,25 @@ function datosPersonales(body, enlaceScript) {
 
     titulo.appendChild(document.createTextNode("SOCIAL"));
     for (let i = 0; i < 3; i++) {
-        enlace = document.createElement("a");
+        let enlace = document.createElement("a");
+        let img = document.createAttribute("img");
+
         contenedor_dato.appendChild(enlace);
-        enlace.appendChild(document.createTextNode(misDatos.datosPerso[contador]));
+        enlace.setAttribute("href", misDatos.datosPerso[contador]); 
+
         contador++;
     }
+
+}
+
+
+/**
+ * Crea el DOM para los conocimientos
+ */
+function conocimientos(body, enlaceScript) {
+    let contendor_conoc = document.createElement("div");
+    body.insertBefore(contendor_conoc, enlaceScript);
+
 
 }
 
@@ -159,6 +186,7 @@ function inicio() {
 
     sobreMi(body, enlaceScript);
     datosPersonales(body, enlaceScript);
+    conocimientos(body, enlaceScript);
 }
 
 
