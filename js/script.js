@@ -1,21 +1,17 @@
 const misDatos = {
     datosPerso: [
-        {
-            sobreMi: "¡Hey! Soy Moisés, Desarrollador de Aplicaciones Web",
-            descripcion: `Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Perspiciatis minima aliquam impedit. Sapiente dolorum rem velit id ipsa architecto veniam.
-            Itaque magnam nulla molestias error totam, quidem minus odio culpa? `,
-            nombre: "Moisés Alejandro Campos Perdomo", 
-            nacimiento: "07. 10. 2003", 
-            email: "moisescamposdaw@gmail.com", 
-            telefono: "(+34) 603 123 456",
-            ubicacion: "Canarias, España"
-        },
-        {
-            linkedIn: "<a href='https://www.linkedin.com/in/moisescap/'><img src='img/linkedin.png' width='26px'></a>",
-            github: "<a href='https://github.com/MoisesCDAW'><img src='img/github.png' width='26px'></a>",
-            instagram: "<a href='https://www.instagram.com/moisescamposp/'><img src='img/instagram.png' width='26px'></a>"
-        }
+        "¡Hey! Soy Moisés, Desarrollador de Aplicaciones Web",
+        `Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+        Perspiciatis minima aliquam impedit. Sapiente dolorum rem velit id ipsa architecto veniam.
+        Itaque magnam nulla molestias error totam, quidem minus odio culpa? `,
+        "Moisés Alejandro Campos Perdomo", 
+        "07. 10. 2003", 
+        "moisescamposdaw@gmail.com", 
+        "(+34) 603 123 456",
+        "Canarias, España",
+        "<a href='https://www.linkedin.com/in/moisescap/'><img src='img/linkedin.png' width='26px'></a>",
+        "<a href='https://github.com/MoisesCDAW'><img src='img/github.png' width='26px'></a>",
+        "<a href='https://www.instagram.com/moisescamposp/'><img src='img/instagram.png' width='26px'></a>"
     ],
     estudios: [
         {
@@ -81,3 +77,89 @@ const misDatos = {
     ]
 }; 
 
+
+/**
+ * Crea el DOM de título con el nombre y la descripción del inicio
+ */
+function sobreMi(body, enlaceScript) {
+    let contenedor_SobreMi = document.createElement("div");
+    let tituloNombre = document.createElement("h2");
+    let miDescripcion = document.createElement("p");
+
+    body.insertBefore(contenedor_SobreMi, enlaceScript);
+
+    contenedor_SobreMi.classList.add("sobreMi");
+    contenedor_SobreMi.appendChild(tituloNombre);
+    contenedor_SobreMi.appendChild(miDescripcion);
+
+    tituloNombre.appendChild(document.createTextNode(misDatos.datosPerso[0]));
+    miDescripcion.appendChild(document.createTextNode(misDatos.datosPerso[1]));
+}
+
+
+/**
+ * Crea el DOM de los datos personales
+ */
+function datosPersonales(body, enlaceScript) {
+    const titulos = ["nombre", "nacimiento", "email", "telefono", "ubicacion"];
+    const redes = ["linkedIn", "github", "instagram"];
+
+    let contenedor_datosPerso = contenedor_dato = titulo = info = "";
+    let contador = 2;
+
+    contenedor_datosPerso = document.createElement("div");
+    contenedor_datosPerso.classList.add("datos-personales");
+
+    body.insertBefore(contenedor_datosPerso, enlaceScript);
+
+    // Crea <div> desde "nombre" hasta "ubicación"
+    for (let i = 0; i < titulos.length; i++) {
+        
+        contenedor_dato = document.createElement("div");
+        contenedor_dato.classList.add("dato");
+
+        titulo = document.createElement("h2");
+        info = document.createElement("p");
+
+        contenedor_datosPerso.appendChild(contenedor_dato);
+        contenedor_dato.appendChild(titulo);
+        contenedor_dato.appendChild(info);
+
+        titulo.appendChild(document.createTextNode(titulos[i].toUpperCase()));
+        info.appendChild(document.createTextNode(misDatos.datosPerso[contador]));
+        contador++;
+    }
+
+    // Crea <div> "social"
+    contador = 7;
+    contenedor_dato = document.createElement("div");
+    contenedor_dato.classList.add("dato");
+    contenedor_datosPerso.appendChild(contenedor_dato);
+    
+    titulo = document.createElement("h2");
+    contenedor_dato.appendChild(titulo);
+
+    titulo.appendChild(document.createTextNode("SOCIAL"));
+    for (let i = 0; i < 3; i++) {
+        enlace = document.createElement("a");
+        contenedor_dato.appendChild(enlace);
+        enlace.appendChild(document.createTextNode(misDatos.datosPerso[contador]));
+        contador++;
+    }
+
+}
+
+
+/**
+ * =========== INICIO ===========
+ */
+function inicio() {
+    let body = document.getElementsByTagName("body")[0];
+    let enlaceScript = document.getElementById("enlaceScript");
+
+    sobreMi(body, enlaceScript);
+    datosPersonales(body, enlaceScript);
+}
+
+
+inicio();
