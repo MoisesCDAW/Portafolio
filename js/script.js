@@ -116,9 +116,8 @@ function sobreMi(body, enlaceScript) {
  */
 function datosPersonales(body, enlaceScript) {
     const titulos = ["nombre", "nacimiento", "email", "telefono", "ubicacion"];
-    const redes = ["linkedIn", "github", "instagram"];
 
-    let contenedor_datosPerso = contenedor_dato = titulo = info = "";
+    let contenedor_datosPerso = contenedor_dato = titulo = info = enlaces = "";
     let contador = 2;
 
     contenedor_datosPerso = document.createElement("div");
@@ -146,23 +145,27 @@ function datosPersonales(body, enlaceScript) {
 
     // Crea <div> "social"
     contenedor_dato = document.createElement("div");
-    contenedor_dato.classList.add("dato");
+    contenedor_dato.classList.add("social");
     contenedor_datosPerso.appendChild(contenedor_dato);
     
     titulo = document.createElement("h2");
     contenedor_dato.appendChild(titulo);
 
     titulo.appendChild(document.createTextNode("SOCIAL"));
+
+    enlaces = document.createElement("div");
+    contenedor_dato.appendChild(enlaces);
+
     for (let i = 0; i < 3; i++) {
         let enlace = document.createElement("a");
-        let img = document.createAttribute("img");
+        let img = document.createElement("img");
+        img.setAttribute("src", misDatos.datosPerso[contador+3]);
 
-        contenedor_dato.appendChild(enlace);
+        enlaces.appendChild(enlace);
         enlace.setAttribute("href", misDatos.datosPerso[contador]); 
-
+        enlace.appendChild(img);
         contador++;
     }
-
 }
 
 
@@ -171,10 +174,134 @@ function datosPersonales(body, enlaceScript) {
  */
 function conocimientos(body, enlaceScript) {
     let contendor_conoc = document.createElement("div");
+    let contenedor_img = document.createElement("div");
+    let h2 = document.createElement("h2");
+
     body.insertBefore(contendor_conoc, enlaceScript);
 
+    contendor_conoc.classList.add("conocimientos");
+    contendor_conoc.appendChild(h2);
+    contendor_conoc.appendChild(contenedor_img);
+
+    h2.appendChild(document.createTextNode("Experiencia con"));
+
+    for (let i = 0; i < misDatos.conocimientos.length; i++) {
+        let img = document.createElement("img");
+        contenedor_img.appendChild(img);
+        img.setAttribute("src", misDatos.conocimientos[i]);
+    }
+}
+
+
+/**
+ * Estilos para el contenedor con clase "sobreMi"
+ */
+function estilos_sobreMi() {
+    let base = document.querySelector(".sobreMi");
+    let h2 = base.querySelector("h2");
+    let p = base.querySelector("p");
+
+    // Estilos para "base"
+    base.classList.add(
+        "text-white",
+        "p-10",
+        "pb-0"
+    );
+
+
+    // Estilos para "h2"
+    h2.classList.add(
+        "text-3xl", 
+        "font-semibold",
+    );
+
+
+    // Estilos para "p"
+    p.classList.add(
+        "text-sm",
+        "mt-5",
+        "leading-6"
+    );
+}
+
+
+/**
+ * Estilos para el contenedor con clase "datos-personales"
+ */
+function estilos_datosPersonales() {
+    let base = document.querySelector(".datos-personales");
+    let dato = base.querySelectorAll(".dato");
+    let social = base.querySelector(".social").querySelector("div");
+
+    // Estilos para "base"
+    base.classList.add(
+        "m-10",
+        "p-5",
+        "bg-white",
+        "rounded-lg"
+    );
+    
+    // Estilos para cada contenedor con clase "dato"
+    dato.forEach((x)=>{
+        let h2 = x.querySelector("h2");
+        let p = x.querySelector("p");
+
+        // Estilos para "h2"
+        h2.classList.add(
+            "text-sm",
+            "font-semibold",
+        );
+
+
+        // Estilos para "p"
+        p.classList.add(
+            "mb-3",
+            "text-sm",
+            "leading-6"
+        );
+    });
+
+
+    // Estilos para contenedor de "social"
+    social.classList.add(
+        "flex",
+        "gap-3",
+        "mt-4"
+    );
+
+    enlaces = social.querySelectorAll("a");
+    enlaces.forEach((x)=>{
+        x.classList.add(
+            "w-7"
+        );
+    });
 
 }
+
+
+/**
+ * Estilos para el contenedor con clase "conocimientos"
+ */
+function estilos_conocimientos() {
+    let base = document.querySelector(".conocimientos");
+    let h2 = base.querySelector("h2");
+    let content_img = base.querySelector("div");
+    let imagenes = content_img.querySelectorAll("img");
+
+    // Estilos para "h2"
+    h2.classList.add(
+        "text-white",
+        "text-2xl",
+        "font-semibold",
+        "pl-10"
+    );
+
+    // imagenes.forEach((x)=>{
+    //     x.classList.add(
+    //         "w-10")
+    // });
+}
+
 
 
 /**
@@ -184,9 +311,17 @@ function inicio() {
     let body = document.getElementsByTagName("body")[0];
     let enlaceScript = document.getElementById("enlaceScript");
 
+    body.classList.add("bg-cyan-600");
+
+    // Constructores
     sobreMi(body, enlaceScript);
     datosPersonales(body, enlaceScript);
     conocimientos(body, enlaceScript);
+
+    // Estilistas
+    estilos_sobreMi();
+    estilos_datosPersonales();
+    estilos_conocimientos();
 }
 
 
