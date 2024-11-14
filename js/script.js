@@ -198,35 +198,78 @@ function conocimientos(body, enlaceScript) {
  */
 function estudios(body, enlaceScript) {
     let contendor_estudios = document.createElement("div");
-    let contenedor_estudio = document.createElement("div");
+    let contenedor_est = document.createElement("div");
     let h2 = document.createElement("h2");
     let p = "";
     let aux = misDatos.estudios;
 
     body.insertBefore(contendor_estudios, enlaceScript);
-    contendor_estudios.classList.add("estudios");
-    contendor_estudios.append(h2, contenedor_estudio);
+    contendor_estudios.classList.add("estud-expe");
+    contendor_estudios.append(h2, contenedor_est);
     h2.append("Títulos y Certificaciones");
 
     for (let i = 0; i < aux.length; i++) {
         p = document.createElement("p");
+
+        let titulo = document.createElement("span");
+        titulo.textContent = aux[i].estudio;
+
         p.append(
-            aux[i].estudio,
-            document.createElement("br"),
+            titulo,
             "Inicio: " + aux[i].inicio,
             document.createElement("br"),
-            aux[i].fin,
+            "Fin: " + aux[i].fin,
             document.createElement("br"),
-            aux[i].sede,
+            "Sede: " + aux[i].sede,
             document.createElement("br"),
-            aux[i].ubicacion,
+            "Ubicación: " + aux[i].ubicacion,
             document.createElement("br"),
             document.createElement("hr"),
         );
 
-        contenedor_estudio.append(p);
+        contenedor_est.append(p);
     }
 }
+
+
+/**
+ * Crea el DOM para la experiencia laboral
+ */
+function laboral(body, enlaceScript) {
+    let contendor_experiencias = document.createElement("div");
+    let contenedor_exp = document.createElement("div");
+    let h2 = document.createElement("h2");
+    let p = "";
+    let aux = misDatos.experiencia;
+
+    body.insertBefore(contendor_experiencias, enlaceScript);
+    contendor_experiencias.classList.add("estud-expe");
+    contendor_experiencias.append(h2, contenedor_exp);
+    h2.append("Experiencias");
+
+    for (let i = 0; i < aux.length; i++) {
+        p = document.createElement("p");
+
+        let titulo = document.createElement("span");
+        let sede = document.createElement("span");
+
+        titulo.textContent = aux[i].puesto;
+        sede.textContent = aux[i].sede + " - " + aux[i].ubicacion;
+
+        p.append(
+            aux[i].inicio + " - " + aux[i].fin,
+            document.createElement("br"),
+            titulo,
+            aux[i].descripcion,
+            document.createElement("br"),
+            sede,
+            document.createElement("hr")
+        );
+
+        contenedor_exp.append(p);
+    }
+}
+
 
 
 /**
@@ -356,40 +399,64 @@ function estilos_conocimientos() {
  * Estilos para el contenedor con clase "estudios"
  */
 function estilos_estudios(){
-    let base = document.querySelector(".estudios");
-    let h2 = base.querySelector("h2");
-    let contendor_estudios = base.querySelector("div")
+    let base = document.querySelectorAll(".estud-expe");
 
-    // Estilos para "h2"
-    h2.classList.add(
-        "text-white",
-        "text-2xl",
-        "font-semibold",
-        "p-2",
-        "pl-10",
-        "bg-red-800"
-    );
+    base.forEach((y)=>{
+        let h2 = y.querySelectorAll("h2");
+        let contenedor = y.querySelectorAll("div");
 
-    // Estilos para el contenedor de los estudios
-    contendor_estudios.classList.add(
-        "p-10",
-        "pt-5",
-        "grid",
-        "gap-5",
-        "text-white",
-        "text-sm"
-    );
+        // Estilos para "h2"
+        h2.forEach((x)=>{
+            x.classList.add(
+                "text-white",
+                "text-2xl",
+                "font-semibold",
+                "p-2",
+                "pl-10",
+                "bg-red-800"
+            );
+        });
 
-    let hr = contendor_estudios.querySelectorAll("hr");
-    hr.forEach((x) => {
-        x.classList.add(
-            "mt-5",
-            "border",
-            "border-white"
-        );
+        // Estilos para el contenedor de los estudios
+        contenedor.forEach((x)=>{
+            x.classList.add(
+                "p-10",
+                "pt-5",
+                "grid",
+                "gap-5",
+                "text-white",
+                "text-sm",
+                "leading-6"
+            );
+
+            let p = x.querySelectorAll("p");
+            p.forEach((x)=>{
+                x.classList.add(
+                    "grid",
+                    "gap-3"
+                );
+            });
+
+            // Estilos para la línea divisora
+            let hr = x.querySelectorAll("hr");
+            hr.forEach((x) => {
+                x.classList.add(
+                    "mt-5",
+                    "border",
+                    "border-white"
+                );
+            });
+
+            // Estilo para los titulos de cada estudio
+            let span = x.querySelectorAll("span");
+            span.forEach((x)=>{
+                x.classList.add(
+                    "text-base",
+                    "font-semibold"
+                );
+            });
+        });
     });
-
-
 }
 
 /**
@@ -406,6 +473,7 @@ function inicio() {
     datosPersonales(body, enlaceScript);
     conocimientos(body, enlaceScript);
     estudios(body, enlaceScript);
+    laboral(body, enlaceScript);
 
     // Estilistas
     estilos_sobreMi();
