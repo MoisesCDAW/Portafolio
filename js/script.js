@@ -17,15 +17,15 @@ const misDatos = {
         "img/instagram.png"
     ],
     conocimientos: [
-        "img/skills/java.png",
-        "img/skills/javascript.png",
-        "img/skills/mysql.png",
-        "img/skills/php.png",
-        "img/skills/html.png",
-        "img/skills/css.png",
-        "img/skills/Bootstrap.png",
-        "img/skills/tailwind.png",
-        "img/skills/vuejs.png",
+        "img/skills/java.svg",
+        "img/skills/javascript.svg",
+        "img/skills/mysql.svg",
+        "img/skills/php.svg",
+        "img/skills/html.svg",
+        "img/skills/css.svg",
+        "img/skills/Bootstrap.svg",
+        "img/skills/tailwind.svg",
+        "img/skills/vuejs.svg",
     ],
     estudios: [
         {
@@ -183,12 +183,48 @@ function conocimientos(body, enlaceScript) {
     contendor_conoc.appendChild(h2);
     contendor_conoc.appendChild(contenedor_img);
 
-    h2.appendChild(document.createTextNode("Experiencia con"));
+    h2.appendChild(document.createTextNode("Tecnologías Web"));
 
     for (let i = 0; i < misDatos.conocimientos.length; i++) {
         let img = document.createElement("img");
         contenedor_img.appendChild(img);
         img.setAttribute("src", misDatos.conocimientos[i]);
+    }
+}
+
+
+/**
+ * Crea el DOM para los estudios
+ */
+function estudios(body, enlaceScript) {
+    let contendor_estudios = document.createElement("div");
+    let contenedor_estudio = document.createElement("div");
+    let h2 = document.createElement("h2");
+    let p = "";
+    let aux = misDatos.estudios;
+
+    body.insertBefore(contendor_estudios, enlaceScript);
+    contendor_estudios.classList.add("estudios");
+    contendor_estudios.append(h2, contenedor_estudio);
+    h2.append("Títulos y Certificaciones");
+
+    for (let i = 0; i < aux.length; i++) {
+        p = document.createElement("p");
+        p.append(
+            aux[i].estudio,
+            document.createElement("br"),
+            "Inicio: " + aux[i].inicio,
+            document.createElement("br"),
+            aux[i].fin,
+            document.createElement("br"),
+            aux[i].sede,
+            document.createElement("br"),
+            aux[i].ubicacion,
+            document.createElement("br"),
+            document.createElement("hr"),
+        );
+
+        contenedor_estudio.append(p);
     }
 }
 
@@ -293,16 +329,68 @@ function estilos_conocimientos() {
         "text-white",
         "text-2xl",
         "font-semibold",
-        "pl-10"
+        "p-2",
+        "pl-10",
+        "bg-red-800"
     );
 
-    // imagenes.forEach((x)=>{
-    //     x.classList.add(
-    //         "w-10")
-    // });
+    // Estilos para cada el contenedor de las imágenes
+    content_img.classList.add(
+        "p-10",
+        "grid",
+        "grid-cols-3",
+        "gap-5",
+        "justify-items-center"
+    );
+
+    // Estilos para las imágenes
+    imagenes.forEach((x)=>{
+        x.classList.add(
+            "w-12",
+        );
+    }); 
 }
 
 
+/**
+ * Estilos para el contenedor con clase "estudios"
+ */
+function estilos_estudios(){
+    let base = document.querySelector(".estudios");
+    let h2 = base.querySelector("h2");
+    let contendor_estudios = base.querySelector("div")
+
+    // Estilos para "h2"
+    h2.classList.add(
+        "text-white",
+        "text-2xl",
+        "font-semibold",
+        "p-2",
+        "pl-10",
+        "bg-red-800"
+    );
+
+    // Estilos para el contenedor de los estudios
+    contendor_estudios.classList.add(
+        "p-10",
+        "pt-5",
+        "grid",
+        "gap-5",
+        "text-white",
+        "text-sm"
+    );
+
+    let hr = contendor_estudios.querySelectorAll("hr");
+    hr.forEach((x) => {
+        x.classList.add(
+            "mt-5",
+            "border",
+            "border-white"
+        );
+    });
+
+
+}
 
 /**
  * =========== INICIO ===========
@@ -317,11 +405,13 @@ function inicio() {
     sobreMi(body, enlaceScript);
     datosPersonales(body, enlaceScript);
     conocimientos(body, enlaceScript);
+    estudios(body, enlaceScript);
 
     // Estilistas
     estilos_sobreMi();
     estilos_datosPersonales();
     estilos_conocimientos();
+    estilos_estudios();
 }
 
 
