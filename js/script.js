@@ -26,6 +26,7 @@ const misDatos = {
         "img/skills/oscuro/Bootstrap.svg",
         "img/skills/oscuro/tailwind.svg",
         "img/skills/oscuro/vuejs.svg",
+        "img/skills/oscuro/laravel.svg"
     ],
     estudios: [
         {
@@ -330,8 +331,7 @@ function estilos_sobreMi() {
 
     // Estilos para "base"
     base.classList.add(
-        "p-10",
-        "pb-0"
+        "pb-5"
     );
 
 
@@ -347,7 +347,8 @@ function estilos_sobreMi() {
     p.classList.add(
         "text-sm",
         "mt-5",
-        "leading-6"
+        "leading-6",
+        "min-[880px]:text-base"
     );
 }
 
@@ -365,7 +366,8 @@ function estilos_datosPersonales() {
         "text-white",
         "p-5",
         "bg-[#2E5077]",
-        "rounded-lg"
+        "rounded-lg",
+        "row-span-2"
     );
     
     // Estilos para cada contenedor con clase "dato"
@@ -384,7 +386,7 @@ function estilos_datosPersonales() {
         p.classList.add(
             "mb-3",
             "text-sm",
-            "leading-6"
+            "leading-6",
         );
     });
 
@@ -417,6 +419,8 @@ function estilos_conocimientos() {
 
     // Estilos para "h2"
     h2.classList.add(
+        "mt-5",
+        "min-[880px]:mt-0",
         "text-[#2E5077]",
         "text-2xl",
         "font-semibold",
@@ -426,6 +430,7 @@ function estilos_conocimientos() {
     content_img.classList.add(
         "grid",
         "grid-cols-3",
+        "min-[880px]:grid-cols-4",
         "gap-5",
         "justify-items-center",
         "mt-10",
@@ -436,6 +441,8 @@ function estilos_conocimientos() {
     imagenes.forEach((x)=>{
         x.classList.add(
             "w-12",
+            "transition",
+            "hover:scale-[1.1]"
         );
     }); 
 }
@@ -458,7 +465,7 @@ function estilos_estud_expe(){
                 "text-2xl",
                 "font-semibold",
                 "p-2",
-                "pl-10"
+                "pl-10",
             );
         });
 
@@ -477,7 +484,8 @@ function estilos_estud_expe(){
             p.forEach((x)=>{
                 x.classList.add(
                     "grid",
-                    "gap-3"
+                    "gap-3",
+                    "min-[880px]:text-base"
                 );
             });
 
@@ -496,7 +504,8 @@ function estilos_estud_expe(){
             span.forEach((x)=>{
                 x.classList.add(
                     "text-base",
-                    "font-semibold"
+                    "font-semibold",
+                    "min-[880px]:text-lg"
                 );
             });
         });
@@ -535,13 +544,17 @@ function estilos_proyectos() {
     cards.forEach((x)=>{
         x.classList.add(
             "border",
-            "rounded-lg"
+            "border-2",
+            "rounded-lg",
+            "transition",
+            "hover:scale-[1.01]"
         );
 
         let img = x.querySelector("img");
         img.classList.add(
-            "border",
-            "rounded-t-lg"
+            "border-b-2",
+            "rounded-t-lg",
+            "min-h-[200px]"
         );
 
         let content = x.querySelector("div");
@@ -570,7 +583,7 @@ function inicio() {
     body.insertBefore(content_general, enlaceScript);
 
     body.classList.add(
-        // "bg-[#2E5077]" 
+        "bg-[#f3f4f6]"
     );
 
     content_general.classList.add(
@@ -580,21 +593,22 @@ function inicio() {
         "my-8",
         "border",
         "border-2",
-        "rounded-lg"
+        "rounded-lg",
+        "shadow-[0_0px_20px_2px_rgba(0,0,0,0.1)]"
     );
 
     content_datos_tecn.classList.add(
         "grid",
         "grid-cols-1",
-        "min-[880px]:grid-cols-2",
+        "min-[880px]:grid-cols-[1fr_300px]",
         "p-10",
-        "gap-10",
+        "gap-x-10",
     );
 
 
     // Constructores
-    sobreMi(content_general);
     content_general.append(content_datos_tecn);
+    sobreMi(content_datos_tecn);
     datosPersonales(content_datos_tecn);
     conocimientos(content_datos_tecn);
     estudios(content_general);
