@@ -12,20 +12,20 @@ const misDatos = {
         "https://www.linkedin.com/in/moisescap/",
         "https://github.com/MoisesCDAW",
         "https://www.instagram.com/moisescamposp/",
-        "img/linkedin.png",
-        "img/github.png",
-        "img/instagram.png"
+        "img/redes/linkedin.svg",
+        "img/redes/github.svg",
+        "img/redes/instagram.svg"
     ],
     conocimientos: [
-        "img/skills/java.svg",
-        "img/skills/javascript.svg",
-        "img/skills/mysql.svg",
-        "img/skills/php.svg",
-        "img/skills/html.svg",
-        "img/skills/css.svg",
-        "img/skills/Bootstrap.svg",
-        "img/skills/tailwind.svg",
-        "img/skills/vuejs.svg",
+        "img/skills/oscuro/java.svg",
+        "img/skills/oscuro/javascript.svg",
+        "img/skills/oscuro/mysql.svg",
+        "img/skills/oscuro/php.svg",
+        "img/skills/oscuro/html.svg",
+        "img/skills/oscuro/css.svg",
+        "img/skills/oscuro/Bootstrap.svg",
+        "img/skills/oscuro/tailwind.svg",
+        "img/skills/oscuro/vuejs.svg",
     ],
     estudios: [
         {
@@ -66,23 +66,20 @@ const misDatos = {
     ],
     proyectos: [
         {
-            codigo: 1,
-            url: "mixapp.moisescap.com",
+            url: "https://www.mixapp.moisescap.com",
             titulo: "MIXAPP",
             img: "img/portada_mixapp.png",
             descripcion: `Es un programa con utilidades variadas. Contiene un tipo test y un juego de memorias sobre Los Simpsons.
             También posee un formulario con la finalidad de llevar un control de la distribución de un producto`
         },
         {
-            codigo: 2,
-            url: "calendario.moisescap.com",
+            url: "https://www.calendario.moisescap.com",
             titulo: "Calendario",
             img: "img/portada_calendario.png",
             descripcion: `Calendario que muestra los días festivos del 2024 de Canarias. Permite filtrar por islas y marcar como favoritos a los festivos`
         },
         {
-            codigo: 3,
-            url: "trivia.moisescap.com",
+            url: "https://www.trivia.moisescap.com",
             titulo: "Trivia",
             img: "img/portada_trivia.png",
             descripcion: `Es un trivia con 10 preguntas de todo tipo de temas. Posee un temporizador para medir el tiempo de respuesta y 
@@ -92,15 +89,18 @@ const misDatos = {
 }; 
 
 
+// =================================== CONSTRUCTORES =======================================
+
+
 /**
  * Crea el DOM de título con el nombre y la descripción del inicio
  */
-function sobreMi(body, enlaceScript) {
+function sobreMi(content_general) {
     let contenedor_SobreMi = document.createElement("div");
     let tituloNombre = document.createElement("h2");
     let miDescripcion = document.createElement("p");
 
-    body.insertBefore(contenedor_SobreMi, enlaceScript);
+    content_general.append(contenedor_SobreMi);
 
     contenedor_SobreMi.classList.add("sobreMi");
     contenedor_SobreMi.appendChild(tituloNombre);
@@ -114,7 +114,7 @@ function sobreMi(body, enlaceScript) {
 /**
  * Crea el DOM de los datos personales
  */
-function datosPersonales(body, enlaceScript) {
+function datosPersonales(content_datos_tecn) {
     const titulos = ["nombre", "nacimiento", "email", "telefono", "ubicacion"];
 
     let contenedor_datosPerso = contenedor_dato = titulo = info = enlaces = "";
@@ -123,7 +123,7 @@ function datosPersonales(body, enlaceScript) {
     contenedor_datosPerso = document.createElement("div");
     contenedor_datosPerso.classList.add("datos-personales");
 
-    body.insertBefore(contenedor_datosPerso, enlaceScript);
+    content_datos_tecn.append(contenedor_datosPerso);
 
     // Crea <div> desde "nombre" hasta "ubicación"
     for (let i = 0; i < titulos.length; i++) {
@@ -172,12 +172,12 @@ function datosPersonales(body, enlaceScript) {
 /**
  * Crea el DOM para los conocimientos
  */
-function conocimientos(body, enlaceScript) {
+function conocimientos(content_datos_tecn) {
     let contendor_conoc = document.createElement("div");
     let contenedor_img = document.createElement("div");
     let h2 = document.createElement("h2");
 
-    body.insertBefore(contendor_conoc, enlaceScript);
+    content_datos_tecn.append(contendor_conoc);
 
     contendor_conoc.classList.add("conocimientos");
     contendor_conoc.appendChild(h2);
@@ -196,14 +196,14 @@ function conocimientos(body, enlaceScript) {
 /**
  * Crea el DOM para los estudios
  */
-function estudios(body, enlaceScript) {
+function estudios(content_general) {
     let contendor_estudios = document.createElement("div");
     let contenedor_est = document.createElement("div");
     let h2 = document.createElement("h2");
     let p = "";
     let aux = misDatos.estudios;
 
-    body.insertBefore(contendor_estudios, enlaceScript);
+    content_general.append(contendor_estudios);
     contendor_estudios.classList.add("estud-expe");
     contendor_estudios.append(h2, contenedor_est);
     h2.append("Títulos y Certificaciones");
@@ -235,14 +235,14 @@ function estudios(body, enlaceScript) {
 /**
  * Crea el DOM para la experiencia laboral
  */
-function laboral(body, enlaceScript) {
+function laboral(content_general) {
     let contendor_experiencias = document.createElement("div");
     let contenedor_exp = document.createElement("div");
     let h2 = document.createElement("h2");
     let p = "";
     let aux = misDatos.experiencia;
 
-    body.insertBefore(contendor_experiencias, enlaceScript);
+    content_general.append(contendor_experiencias);
     contendor_experiencias.classList.add("estud-expe");
     contendor_experiencias.append(h2, contenedor_exp);
     h2.append("Experiencias");
@@ -271,6 +271,54 @@ function laboral(body, enlaceScript) {
 }
 
 
+/**
+ * Crea el DOM para los proyectos
+ */
+function proyectos(content_general) {
+    let contendor = document.createElement("div");
+    let contendor_proyectos = document.createElement("div");
+    let h2 = document.createElement("h2");
+    let aux = misDatos.proyectos;
+    let contenedor_proyec = content_img = img =titulo_proyec = descripcion = "";
+
+    content_general.append(contendor);
+    h2.append("Proyectos")
+    contendor.append(h2);
+    contendor.append(contendor_proyectos);
+    contendor.classList.add("proyectos");
+    contendor_proyectos.classList.add("cards");
+
+    for (let i = 0; i < aux.length; i++) {
+
+        // Creación de elementos
+        contenedor_proyec = document.createElement("div");
+        contenedor_proyec.classList.add("card");
+        content_img = document.createElement("a");
+        img = document.createElement("img");
+        content_text = document.createElement("div");
+        titulo_proyec = document.createElement("h4");
+        descripcion = document.createElement("p");
+
+        // Contenedor Proyecto
+        contendor_proyectos.append(contenedor_proyec);
+        contenedor_proyec.append(content_img, content_text);
+
+        // Contenedor IMG
+        content_img.append(img);
+        content_img.setAttribute("href", aux[i].url);
+        img.setAttribute("src", aux[i].img);
+
+        // Contenedor Texto
+        content_text.append(titulo_proyec, descripcion);
+        titulo_proyec.textContent = aux[i].titulo;
+        descripcion.textContent = aux[i].descripcion;
+    }
+}
+
+
+// =================================== ESTILISTAS =======================================
+
+
 
 /**
  * Estilos para el contenedor con clase "sobreMi"
@@ -282,7 +330,6 @@ function estilos_sobreMi() {
 
     // Estilos para "base"
     base.classList.add(
-        "text-white",
         "p-10",
         "pb-0"
     );
@@ -290,6 +337,7 @@ function estilos_sobreMi() {
 
     // Estilos para "h2"
     h2.classList.add(
+        "text-[#2E5077]",
         "text-3xl", 
         "font-semibold",
     );
@@ -314,9 +362,9 @@ function estilos_datosPersonales() {
 
     // Estilos para "base"
     base.classList.add(
-        "m-10",
+        "text-white",
         "p-5",
-        "bg-white",
+        "bg-[#2E5077]",
         "rounded-lg"
     );
     
@@ -369,21 +417,19 @@ function estilos_conocimientos() {
 
     // Estilos para "h2"
     h2.classList.add(
-        "text-white",
+        "text-[#2E5077]",
         "text-2xl",
         "font-semibold",
-        "p-2",
-        "pl-10",
-        "bg-red-800"
     );
 
     // Estilos para cada el contenedor de las imágenes
     content_img.classList.add(
-        "p-10",
         "grid",
         "grid-cols-3",
         "gap-5",
-        "justify-items-center"
+        "justify-items-center",
+        "mt-10",
+        "px-7"
     );
 
     // Estilos para las imágenes
@@ -398,7 +444,7 @@ function estilos_conocimientos() {
 /**
  * Estilos para el contenedor con clase "estudios"
  */
-function estilos_estudios(){
+function estilos_estud_expe(){
     let base = document.querySelectorAll(".estud-expe");
 
     base.forEach((y)=>{
@@ -408,12 +454,11 @@ function estilos_estudios(){
         // Estilos para "h2"
         h2.forEach((x)=>{
             x.classList.add(
-                "text-white",
+                "text-[#2E5077]",
                 "text-2xl",
                 "font-semibold",
                 "p-2",
-                "pl-10",
-                "bg-red-800"
+                "pl-10"
             );
         });
 
@@ -424,7 +469,6 @@ function estilos_estudios(){
                 "pt-5",
                 "grid",
                 "gap-5",
-                "text-white",
                 "text-sm",
                 "leading-6"
             );
@@ -443,7 +487,7 @@ function estilos_estudios(){
                 x.classList.add(
                     "mt-5",
                     "border",
-                    "border-white"
+                    "border-[#2E5077]"
                 );
             });
 
@@ -459,27 +503,110 @@ function estilos_estudios(){
     });
 }
 
+
+/**
+ * Estilos para el contenedor con clase "proyectos"
+ */
+function estilos_proyectos() {
+    let base = document.querySelector(".proyectos");
+
+    base.classList.add(
+        "p-10",
+        "pt-0"
+    );
+
+    let h2 = base.querySelector("h2");
+    h2.classList.add(
+        "text-2xl",
+        "font-semibold",
+        "text-[#2E5077]",
+        "pb-10"
+    );
+
+    let cards = base.querySelector(".cards");
+    cards.classList.add(
+        "grid",
+        "grid-cols-1",
+        "gap-8",
+        "min-[880px]:grid-cols-2"
+    );
+
+    cards = cards.querySelectorAll(".card")
+    cards.forEach((x)=>{
+        x.classList.add(
+            "border",
+            "rounded-lg"
+        );
+
+        let img = x.querySelector("img");
+        img.classList.add(
+            "border",
+            "rounded-t-lg"
+        );
+
+        let content = x.querySelector("div");
+        content.classList.add("p-5");
+
+        let titulo = content.querySelector("h4");
+        titulo.classList.add(
+            "text-base",
+            "font-bold",
+            "text-center",
+            "pb-3"
+        );
+    });
+}
+
+
 /**
  * =========== INICIO ===========
  */
 function inicio() {
     let body = document.getElementsByTagName("body")[0];
+    let content_general = document.createElement("div");
+    let content_datos_tecn = document.createElement("div");
     let enlaceScript = document.getElementById("enlaceScript");
 
-    body.classList.add("bg-cyan-600");
+    body.insertBefore(content_general, enlaceScript);
+
+    body.classList.add(
+        // "bg-[#2E5077]" 
+    );
+
+    content_general.classList.add(
+        "bg-white",
+        "min-[880px]:w-1/2", 
+        "m-auto",
+        "my-8",
+        "border",
+        "border-2",
+        "rounded-lg"
+    );
+
+    content_datos_tecn.classList.add(
+        "grid",
+        "grid-cols-1",
+        "min-[880px]:grid-cols-2",
+        "p-10",
+        "gap-10",
+    );
+
 
     // Constructores
-    sobreMi(body, enlaceScript);
-    datosPersonales(body, enlaceScript);
-    conocimientos(body, enlaceScript);
-    estudios(body, enlaceScript);
-    laboral(body, enlaceScript);
+    sobreMi(content_general);
+    content_general.append(content_datos_tecn);
+    datosPersonales(content_datos_tecn);
+    conocimientos(content_datos_tecn);
+    estudios(content_general);
+    laboral(content_general);
+    proyectos(content_general);
 
     // Estilistas
     estilos_sobreMi();
     estilos_datosPersonales();
     estilos_conocimientos();
-    estilos_estudios();
+    estilos_estud_expe();
+    estilos_proyectos();
 }
 
 
