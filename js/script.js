@@ -1,9 +1,11 @@
 const misDatos = {
     datosPerso: [
         "¡Hey! Soy Moisés, Desarrollador de Aplicaciones Web",
-        `Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-        Perspiciatis minima aliquam impedit. Sapiente dolorum rem velit id ipsa architecto veniam.
-        Itaque magnam nulla molestias error totam, quidem minus odio culpa? `,
+        `Estoy a punto de finalizar mis estudios y, a lo largo de mi formación, 
+        he trabajado en diversos proyectos que me han permitido aplicar mis conocimientos 
+        y desarrollar habilidades en la creación de sitios y aplicaciones web. 
+        Estoy profundamente interesado en seguir aprendiendo y enfrentar nuevos desafíos 
+        profesionales en el ámbito del desarrollo web.`,
         "Moisés Alejandro Campos Perdomo", 
         "07. 10. 2003", 
         "moisescamposdaw@gmail.com", 
@@ -94,14 +96,57 @@ const misDatos = {
 
 
 /**
+ * Crea el DOM para el botón de volver arriba
+ */
+function volverArriba(content_general) {
+    let contendor = document.createElement("div");
+    let enlace = document.createElement("a");
+    let img = document.createElement("img");
+
+    content_general.append(contendor);
+    contendor.classList.add("volArriba");
+    contendor.append(enlace);
+    enlace.append(img);
+
+    enlace.setAttribute("href", "#inicio");
+    img.setAttribute("src", "img/up.png");
+}
+
+
+/**
+ * Crea el DOM para la zona de navegación
+ */
+function navegacion(content_general) {
+    let opciones = ["Estudios", "Experiencia", "Proyectos"]
+    let enlaces = ["#estudios", "#expe", "#proyect"];
+    let contenedor_nav = document.createElement("div");
+    let ul = document.createElement("ul");
+
+    content_general.append(contenedor_nav);
+    contenedor_nav.append(ul);
+    contenedor_nav.classList.add("nav");
+    contenedor_nav.setAttribute("id", "inicio");
+
+    for (let i = 0; i < 3; i++) {
+        let li = document.createElement("li");
+        let a = document.createElement("a");
+        ul.append(li);
+        ul.append(a);
+        a.setAttribute("href", enlaces[i]);
+        a.textContent = opciones[i];
+    }
+}
+
+
+/**
  * Crea el DOM de título con el nombre y la descripción del inicio
  */
-function sobreMi(content_general) {
+function sobreMi(content_datos_tecn) {
     let contenedor_SobreMi = document.createElement("div");
     let tituloNombre = document.createElement("h2");
     let miDescripcion = document.createElement("p");
 
-    content_general.append(contenedor_SobreMi);
+    content_datos_tecn.append(contenedor_SobreMi);
 
     contenedor_SobreMi.classList.add("sobreMi");
     contenedor_SobreMi.appendChild(tituloNombre);
@@ -206,6 +251,7 @@ function estudios(content_general) {
 
     content_general.append(contendor_estudios);
     contendor_estudios.classList.add("estud-expe");
+    contendor_estudios.setAttribute("id", "estudios");
     contendor_estudios.append(h2, contenedor_est);
     h2.append("Títulos y Certificaciones");
 
@@ -245,6 +291,7 @@ function laboral(content_general) {
 
     content_general.append(contendor_experiencias);
     contendor_experiencias.classList.add("estud-expe");
+    contendor_experiencias.setAttribute("id", "expe");
     contendor_experiencias.append(h2, contenedor_exp);
     h2.append("Experiencias");
 
@@ -287,6 +334,7 @@ function proyectos(content_general) {
     contendor.append(h2);
     contendor.append(contendor_proyectos);
     contendor.classList.add("proyectos");
+    contendor.setAttribute("id", "proyect");
     contendor_proyectos.classList.add("cards");
 
     for (let i = 0; i < aux.length; i++) {
@@ -319,6 +367,79 @@ function proyectos(content_general) {
 
 // =================================== ESTILISTAS =======================================
 
+function estilos_volverArriba() {
+    let base = document.querySelector(".volArriba");
+    let img = base.querySelector("img");
+
+    base.classList.add(
+        "w-10",
+        "h-10",
+        "fixed",
+        "right-10",
+        "min-[880px]:inset-x-2/4",
+        "bottom-24"
+    );
+
+    img.classList.add(
+        "opacity-0",
+        "w-10",
+        "transition",
+        "duration-[400ms]",
+        "ease-in-out",
+    );
+
+    window.addEventListener("scroll", function() {
+        if (window.scrollY > 500) {
+            img.classList.remove("opacity-0");
+            img.classList.add("opacity-20");
+        }else {
+            img.classList.remove("opacity-20");
+            img.classList.add("opacity-0");
+        }
+    });
+
+}
+
+
+/**
+ * Estilos para el contenedor con clase "nav"
+ */
+function estilos_navegacion() {
+    let base = document.querySelector(".nav");
+    let ul = base.querySelector("ul");
+    let a = ul.querySelectorAll("a");
+
+    base.classList.add(
+        "bg-white",
+        "flex",
+        "justify-center",
+        "rounded-t-lg",
+        "border-b-2",
+        "border-[#55a4ff]"
+    );
+
+    ul.classList.add(
+        "p-5",
+        "flex",
+        "gap-6"
+    );
+
+    a.forEach((x)=>{
+        x.classList.add(
+            "p-2",
+            "px-3",
+            "border-2",
+            "border-white",
+            "rounded-full",
+            "transition",
+            "hover:bg-white",
+            "hover:border-2",
+            "hover:border-[#55a4ff]",
+            "hover:text-[#55a4ff]",
+            "hover:scale-[1.001]"
+        );
+    }); 
+}
 
 
 /**
@@ -337,7 +458,7 @@ function estilos_sobreMi() {
 
     // Estilos para "h2"
     h2.classList.add(
-        "text-[#2E5077]",
+        "text-[#55a4ff]",
         "text-3xl", 
         "font-semibold",
     );
@@ -365,7 +486,7 @@ function estilos_datosPersonales() {
     base.classList.add(
         "text-white",
         "p-5",
-        "bg-[#2E5077]",
+        "bg-[#55a4ff]",
         "rounded-lg",
         "row-span-2"
     );
@@ -401,7 +522,9 @@ function estilos_datosPersonales() {
     enlaces = social.querySelectorAll("a");
     enlaces.forEach((x)=>{
         x.classList.add(
-            "w-7"
+            "w-7",
+            "transition",
+            "hover:scale-[1.1]"
         );
     });
 
@@ -421,7 +544,7 @@ function estilos_conocimientos() {
     h2.classList.add(
         "mt-5",
         "min-[880px]:mt-0",
-        "text-[#2E5077]",
+        "text-[#55a4ff]",
         "text-2xl",
         "font-semibold",
     );
@@ -461,7 +584,7 @@ function estilos_estud_expe(){
         // Estilos para "h2"
         h2.forEach((x)=>{
             x.classList.add(
-                "text-[#2E5077]",
+                "text-[#55a4ff]",
                 "text-2xl",
                 "font-semibold",
                 "p-2",
@@ -495,7 +618,7 @@ function estilos_estud_expe(){
                 x.classList.add(
                     "mt-5",
                     "border",
-                    "border-[#2E5077]"
+                    "border-[#55a4ff]"
                 );
             });
 
@@ -528,7 +651,7 @@ function estilos_proyectos() {
     h2.classList.add(
         "text-2xl",
         "font-semibold",
-        "text-[#2E5077]",
+        "text-[#55a4ff]",
         "pb-10"
     );
 
@@ -545,9 +668,9 @@ function estilos_proyectos() {
         x.classList.add(
             "border",
             "border-2",
-            "rounded-lg",
+            "rounded-xl",
             "transition",
-            "hover:scale-[1.01]"
+            "hover:shadow-[5px_10px_20px_-10px_rgba(0,0,0,0.1)]"
         );
 
         let img = x.querySelector("img");
@@ -582,6 +705,8 @@ function inicio() {
 
     body.insertBefore(content_general, enlaceScript);
 
+    document.getElementsByTagName("html")[0].classList.add("scroll-smooth");
+
     body.classList.add(
         "bg-[#f3f4f6]"
     );
@@ -602,11 +727,13 @@ function inicio() {
         "grid-cols-1",
         "min-[880px]:grid-cols-[1fr_300px]",
         "p-10",
-        "gap-x-10",
+        "pt-5",
+        "gap-x-10"
     );
 
 
     // Constructores
+    navegacion(content_general);
     content_general.append(content_datos_tecn);
     sobreMi(content_datos_tecn);
     datosPersonales(content_datos_tecn);
@@ -614,8 +741,11 @@ function inicio() {
     estudios(content_general);
     laboral(content_general);
     proyectos(content_general);
+    volverArriba(body);
 
     // Estilistas
+    estilos_volverArriba();
+    estilos_navegacion();
     estilos_sobreMi();
     estilos_datosPersonales();
     estilos_conocimientos();
