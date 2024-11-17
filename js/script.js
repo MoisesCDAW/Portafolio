@@ -33,7 +33,7 @@ const misDatos = {
     estudios: [
         {
             estudio: "Bachillerato",
-            inicio: "Septiembre de 2015",
+            inicio: "Septiembre de 2018",
             fin: "Julio de 2020",
             sede: "Colegio Decroly",
             ubicacion: "Venezuela"
@@ -82,11 +82,11 @@ const misDatos = {
             descripcion: `Calendario que muestra los días festivos del 2024 de Canarias. Permite filtrar por islas y marcar como favoritos a los festivos`
         },
         {
-            url: "https://www.trivia.moisescap.com",
-            titulo: "Trivia",
-            img: "img/portada_trivia.png",
-            descripcion: `Es un trivia con 10 preguntas de todo tipo de temas. Posee un temporizador para medir el tiempo de respuesta y 
-            un sistema de puntaje que mantiene el puntaje máximo de un usuario`
+            url: "https://www.registro.moisescap.com",
+            titulo: "Registro",
+            img: "img/portada_regis.png",
+            descripcion: `Es una aplicación que permite crear y eliminar usuarios y guardarlos en una base de datos. La aplicación valida los datos y
+            permite añadir una foto de perfil`
         }
     ]
 }; 
@@ -131,7 +131,7 @@ function navegacion(content_general) {
         let li = document.createElement("li");
         let a = document.createElement("a");
         ul.append(li);
-        ul.append(a);
+        li.append(a);
         a.setAttribute("href", enlaces[i]);
         a.textContent = opciones[i];
     }
@@ -407,10 +407,9 @@ function estilos_volverArriba() {
 function estilos_navegacion() {
     let base = document.querySelector(".nav");
     let ul = base.querySelector("ul");
-    let a = ul.querySelectorAll("a");
+    let li = base.querySelectorAll("li");
 
     base.classList.add(
-        "bg-white",
         "flex",
         "justify-center",
         "rounded-t-lg",
@@ -424,7 +423,7 @@ function estilos_navegacion() {
         "gap-6"
     );
 
-    a.forEach((x)=>{
+    li.forEach((x)=>{
         x.classList.add(
             "p-2",
             "px-3",
@@ -432,11 +431,10 @@ function estilos_navegacion() {
             "border-white",
             "rounded-full",
             "transition",
-            "hover:bg-white",
             "hover:border-2",
             "hover:border-[#55a4ff]",
             "hover:text-[#55a4ff]",
-            "hover:scale-[1.001]"
+            "hover:scale-[1.1]"
         );
     }); 
 }
