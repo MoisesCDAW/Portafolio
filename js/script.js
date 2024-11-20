@@ -414,7 +414,7 @@ function estilos_navegacion() {
         "justify-center",
         "rounded-t-lg",
         "border-b-2",
-        "border-[#55a4ff]"
+        "border-[#373536]"
     );
 
     ul.classList.add(
@@ -432,8 +432,8 @@ function estilos_navegacion() {
             "rounded-full",
             "transition",
             "hover:border-2",
-            "hover:border-[#55a4ff]",
-            "hover:text-[#55a4ff]",
+            "hover:border-[#A4243B]",
+            "hover:text-[#A4243B]",
             "hover:scale-[1.1]"
         );
     }); 
@@ -456,7 +456,7 @@ function estilos_sobreMi() {
 
     // Estilos para "h2"
     h2.classList.add(
-        "text-[#55a4ff]",
+        "text-[#373536]",
         "text-3xl", 
         "font-semibold",
     );
@@ -484,7 +484,7 @@ function estilos_datosPersonales() {
     base.classList.add(
         "text-white",
         "p-5",
-        "bg-[#55a4ff]",
+        "bg-[#A4243B]",
         "rounded-lg",
         "row-span-2"
     );
@@ -542,7 +542,7 @@ function estilos_conocimientos() {
     h2.classList.add(
         "mt-5",
         "min-[880px]:mt-0",
-        "text-[#55a4ff]",
+        "text-[#373536]",
         "text-2xl",
         "font-semibold",
     );
@@ -582,7 +582,7 @@ function estilos_estud_expe(){
         // Estilos para "h2"
         h2.forEach((x)=>{
             x.classList.add(
-                "text-[#55a4ff]",
+                "text-[#373536]",
                 "text-2xl",
                 "font-semibold",
                 "p-2",
@@ -616,7 +616,7 @@ function estilos_estud_expe(){
                 x.classList.add(
                     "mt-5",
                     "border",
-                    "border-[#55a4ff]"
+                    "border-[#373536]"
                 );
             });
 
@@ -649,7 +649,7 @@ function estilos_proyectos() {
     h2.classList.add(
         "text-2xl",
         "font-semibold",
-        "text-[#55a4ff]",
+        "text-[#373536]",
         "pb-10"
     );
 
@@ -706,7 +706,9 @@ function inicio() {
     document.getElementsByTagName("html")[0].classList.add("scroll-smooth");
 
     body.classList.add(
-        "bg-[#f3f4f6]"
+        "bg-[url('img/fondo.jpg')]",
+        "bg-fixed",
+        "bg-contain"
     );
 
     content_general.classList.add(
