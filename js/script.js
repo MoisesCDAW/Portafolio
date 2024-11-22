@@ -122,10 +122,10 @@ function navegacion(content_general) {
     let contenedor_nav = document.createElement("div");
     let ul = document.createElement("ul");
 
+    contenedor_nav.setAttribute("id", "inicio");
     content_general.append(contenedor_nav);
     contenedor_nav.append(ul);
     contenedor_nav.classList.add("nav");
-    contenedor_nav.setAttribute("id", "inicio");
 
     for (let i = 0; i < 3; i++) {
         let li = document.createElement("li");
@@ -412,9 +412,10 @@ function estilos_navegacion() {
     base.classList.add(
         "flex",
         "justify-center",
-        "rounded-t-lg",
         "border-b-2",
-        "border-[#373536]"
+        "border-[#373536]",
+        "min-[880px]:col-span-2",
+        "mx-10",
     );
 
     ul.classList.add(
@@ -450,7 +451,14 @@ function estilos_sobreMi() {
 
     // Estilos para "base"
     base.classList.add(
-        "pb-5"
+        "p-10",
+        "mb-10",
+        "mx-10",
+        "min-[880px]:col-span-2",
+        "rounded-t-lg",
+        "text-center",
+        "border-b-2",
+        "border-[#373536]",
     );
 
 
@@ -483,10 +491,14 @@ function estilos_datosPersonales() {
     // Estilos para "base"
     base.classList.add(
         "text-white",
+        "mx-10",
+        "min-[880px]:mx-0",
+        "min-[880px]:ms-10",
+        "mb-10",
         "p-5",
         "bg-[#A4243B]",
         "rounded-lg",
-        "row-span-2"
+        "row-span-2",
     );
     
     // Estilos para cada contenedor con clase "dato"
@@ -537,6 +549,14 @@ function estilos_conocimientos() {
     let h2 = base.querySelector("h2");
     let content_img = base.querySelector("div");
     let imagenes = content_img.querySelectorAll("img");
+
+    base.classList.add(
+        "min-[1420px]:w-[400px]",
+        "mx-10",
+        "min-[880px]:mx-0",
+        "min-[880px]:me-10",
+        "mb-10",
+    );
 
     // Estilos para "h2"
     h2.classList.add(
@@ -696,6 +716,9 @@ function estilos_proyectos() {
  * =========== INICIO ===========
  */
 function inicio() {
+    let aviso = document.querySelector("#aviso");
+    aviso.remove();
+
     let body = document.getElementsByTagName("body")[0];
     let content_general = document.createElement("div");
     let content_datos_tecn = document.createElement("div");
@@ -715,26 +738,21 @@ function inicio() {
         "bg-white",
         "min-[880px]:w-1/2", 
         "m-auto",
-        "my-8",
-        "border",
-        "border-2",
-        "rounded-lg",
-        "shadow-[0_0px_20px_2px_rgba(0,0,0,0.1)]"
+        "my-8", 
+        "rounded-lg"
     );
 
     content_datos_tecn.classList.add(
         "grid",
         "grid-cols-1",
-        "min-[880px]:grid-cols-[1fr_300px]",
-        "p-10",
-        "pt-5",
+        "min-[880px]:grid-cols-[1fr]",
         "gap-x-10"
     );
 
 
     // Constructores
-    navegacion(content_general);
     content_general.append(content_datos_tecn);
+    navegacion(content_datos_tecn);
     sobreMi(content_datos_tecn);
     datosPersonales(content_datos_tecn);
     conocimientos(content_datos_tecn);
