@@ -46,27 +46,9 @@ const misDatos = {
             ubicacion: "La Palma, España"
         }
     ],
-    experiencia: [
-        {
-            puesto: "Soporte Técnico",
-            inicio: "Enero de 2022",
-            fin: "Julio de 2022",
-            sede: "Innovate Web",
-            ubicacion: "España",
-            descripcion: `Me encargué de proporcionar soporte técnico para las páginas web de los clientes 
-            y de resolver los inconvenientes técnicos internos de la empresa cuando surgían`
-        },
-        {
-            puesto: "Desarrollador Full Stack",
-            inicio: "Julio de 2022",
-            fin: "Actualidad",
-            sede: "Innovate Web",
-            ubicacion: "España",
-            descripcion: `Me encargo del desarrollo y mantenimiento de aplicaciones web, 
-            trabajando tanto en el frontend como en el backend. Además, me ocupé de la integración de bases de datos 
-            y de resolver problemas técnicos para garantizar el buen funcionamiento de las plataformas.`
-        }
-    ],
+
+    experiencia: [],
+
     proyectos: [
         {
             url: "https://www.mixapp.moisescap.com",
@@ -120,8 +102,16 @@ function volverArriba(content_general) {
  * Crea el DOM para la zona de navegación
  */
 function navegacion(content_general) {
-    let opciones = ["Estudios", "Experiencia", "Proyectos"]
-    let enlaces = ["#estudios", "#expe", "#proyect"];
+    let opciones = [
+        "Estudios", 
+        // "Experiencia", 
+        "Proyectos"]
+
+    let enlaces = ["#estudios", 
+        // "#expe", 
+        "#proyect"
+    ];
+
     let contenedor_nav = document.createElement("div");
     let ul = document.createElement("ul");
 
@@ -130,7 +120,7 @@ function navegacion(content_general) {
     contenedor_nav.append(ul);
     contenedor_nav.classList.add("nav");
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < opciones.length; i++) {
         let li = document.createElement("li");
         let a = document.createElement("a");
         ul.append(li);
@@ -780,7 +770,7 @@ function inicio() {
     datosPersonales(content_datos_tecn);
     conocimientos(content_datos_tecn);
     estudios(content_general);
-    laboral(content_general);
+    // laboral(content_general);
     proyectos(content_general);
     volverArriba(body);
 
