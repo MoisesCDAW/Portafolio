@@ -8,7 +8,7 @@ const misDatos = {
         profesionales en el ámbito del desarrollo web.`,
         "Moisés Alejandro Campos Perdomo", 
         "07. 10. 2003", 
-        "moisescamposdaw@gmail.com", 
+        "moisescampos1234@gmail.com", 
         "(+34) 603 123 456",
         "Canarias, España",
         "https://www.linkedin.com/in/moisescap/",
@@ -454,11 +454,14 @@ function estilos_sobreMi() {
     // Estilos para "base"
     base.classList.add(
         "p-10",
+        "max-[880px]:p-0",
+        "max-[880px]:py-10",
         "mb-10",
         "mx-10",
         "min-[880px]:col-span-2",
         "rounded-t-lg",
         "text-center",
+        "max-[880px]:text-left",
         "border-b-2",
         "border-[#373536]",
     );
@@ -468,6 +471,7 @@ function estilos_sobreMi() {
     h2.classList.add(
         "text-[#373536]",
         "text-3xl", 
+        "max-[880px]:text-left",
         "font-semibold",
     );
 
