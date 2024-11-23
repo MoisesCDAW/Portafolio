@@ -71,6 +71,7 @@ const misDatos = {
         {
             url: "https://www.mixapp.moisescap.com",
             titulo: "MIXAPP",
+            creacion: "2024",
             img: "img/portada_mixapp.png",
             descripcion: `Es un programa con utilidades variadas. Contiene un tipo test y un juego de memorias sobre Los Simpsons.
             También posee un formulario con la finalidad de llevar un control de la distribución de un producto`
@@ -78,12 +79,14 @@ const misDatos = {
         {
             url: "https://www.calendario.moisescap.com",
             titulo: "Calendario",
+            creacion: "2024",
             img: "img/portada_calendario.png",
             descripcion: `Calendario que muestra los días festivos del 2024 de Canarias. Permite filtrar por islas y marcar como favoritos a los festivos`
         },
         {
             url: "https://www.registro.moisescap.com",
             titulo: "Registro",
+            creacion: "2024",
             img: "img/portada_regis.png",
             descripcion: `Es una aplicación que permite crear y eliminar usuarios y guardarlos en una base de datos. La aplicación valida los datos y
             permite añadir una foto de perfil`
@@ -341,12 +344,15 @@ function proyectos(content_general) {
 
         // Creación de elementos
         contenedor_proyec = document.createElement("div");
-        contenedor_proyec.classList.add("card");
+        contenedor_proyec.classList.add("carta");
         content_img = document.createElement("a");
         img = document.createElement("img");
         content_text = document.createElement("div");
-        titulo_proyec = document.createElement("h4");
+        titulo_proyec = document.createElement("a");
         descripcion = document.createElement("p");
+        creacion = document.createElement("span");
+        content_titulo = document.createElement("div");
+        flecha_link = document.createElement("img");
 
         // Contenedor Proyecto
         contendor_proyectos.append(contenedor_proyec);
@@ -358,9 +364,15 @@ function proyectos(content_general) {
         img.setAttribute("src", aux[i].img);
 
         // Contenedor Texto
-        content_text.append(titulo_proyec, descripcion);
+        content_text.append(content_titulo, descripcion, creacion);
+        content_titulo.append(titulo_proyec, flecha_link);
         titulo_proyec.textContent = aux[i].titulo;
+        flecha_link.setAttribute("src", "img/flecha_link.png");
+        flecha_link.classList.add("link");
+        titulo_proyec.setAttribute("href", aux[i].url);
         descripcion.textContent = aux[i].descripcion;
+        creacion.textContent = aux[i].creacion;
+
     }
 }
 
@@ -376,7 +388,7 @@ function estilos_volverArriba() {
         "h-10",
         "fixed",
         "right-10",
-        "min-[880px]:inset-x-2/4",
+        "min-[880px]:inset-x-[50%]",
         "bottom-24"
     );
 
@@ -670,44 +682,55 @@ function estilos_proyectos() {
         "text-2xl",
         "font-semibold",
         "text-[#373536]",
-        "pb-10"
+        "pb-10",
+        "w-full",
+        "text-left"
     );
 
     let cards = base.querySelector(".cards");
     cards.classList.add(
         "grid",
         "grid-cols-1",
-        "gap-8",
-        "min-[880px]:grid-cols-2"
+        "gap-8"
     );
 
-    cards = cards.querySelectorAll(".card")
+    let links = base.querySelectorAll(".link");
+    console.log(links);
+    links.forEach((y)=>{
+        y.classList.add("w-[13px]", "h-[13px]", "mt-[4px]");
+    });
+
+    cards = cards.querySelectorAll(".carta")
     cards.forEach((x)=>{
         x.classList.add(
-            "border",
-            "border-2",
-            "rounded-xl",
-            "transition",
-            "hover:shadow-[5px_10px_20px_-10px_rgba(0,0,0,0.1)]"
+            "flex",
+            "gap-5"
         );
 
         let img = x.querySelector("img");
         img.classList.add(
-            "border-b-2",
-            "rounded-t-lg",
-            "min-h-[200px]"
+            "min-w-[45px]"
         );
 
         let content = x.querySelector("div");
-        content.classList.add("p-5");
+        content.classList.add("px-5");
 
-        let titulo = content.querySelector("h4");
+        let titulo = content.querySelector("a");
         titulo.classList.add(
-            "text-base",
             "font-bold",
-            "text-center",
             "pb-3"
         );
+
+        let creacion = content.querySelector("span");
+        creacion.classList.add(
+            "italic",
+            "text-[#777]"
+        );
+
+        let cont_titulos = content.querySelectorAll("div");
+        cont_titulos.forEach((z)=>{
+            z.classList.add("flex", "gap-2");
+        });
     });
 }
 
