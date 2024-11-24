@@ -691,7 +691,11 @@ function estilos_proyectos() {
     let links = base.querySelectorAll(".link");
     console.log(links);
     links.forEach((y)=>{
-        y.classList.add("w-[13px]", "h-[13px]", "mt-[4px]");
+        y.classList.add(
+            "w-[13px]", 
+            "h-[13px]", 
+            "mt-[4px]"
+        );
     });
 
     cards = cards.querySelectorAll(".carta")
@@ -703,7 +707,9 @@ function estilos_proyectos() {
 
         let img = x.querySelector("img");
         img.classList.add(
-            "min-w-[45px]"
+            "min-w-[45px]",
+            "transition",
+            "hover:scale-[1.1]"
         );
 
         let content = x.querySelector("div");
@@ -712,7 +718,10 @@ function estilos_proyectos() {
         let titulo = content.querySelector("a");
         titulo.classList.add(
             "font-bold",
-            "pb-3"
+            "border-s-2",
+            "border-[#A4243B]",
+            "mb-2",
+            "ps-2"
         );
 
         let creacion = content.querySelector("span");
