@@ -1,16 +1,12 @@
 const misDatos = {
     datosPerso: [
-        "¡Hey! Soy Moisés, Desarrollador de Aplicaciones Web",
-        `Estoy a punto de finalizar mis estudios y, a lo largo de mi formación, 
-        he trabajado en diversos proyectos que me han permitido aplicar mis conocimientos 
-        y desarrollar habilidades en la creación de sitios y aplicaciones web. 
-        Estoy profundamente interesado en seguir aprendiendo y enfrentar nuevos desafíos 
-        profesionales en el ámbito del desarrollo web.`,
+        "Hey! I'm Moisés, Software Developer",
+        `I have experience in object-oriented programming in various languages, with a special emphasis on Java, where I have applied SOLID principles, version control, and developed projects under various software architectures, including MVC and Client-Server. Additionally, I have knowledge of SQL databases and modern technologies for designing efficient, accessible, and functional user interfaces.`,
         "Moisés Alejandro Campos Perdomo", 
         "07. 10. 2003", 
         "moisescampos1234@gmail.com", 
         "(+34) 603 123 456",
-        "Canarias, España",
+        "La Palma, Canary Islands, Spain",
         "https://www.linkedin.com/in/moisescap/",
         "https://github.com/MoisesCDAW",
         "https://www.instagram.com/moisescamposp/",
@@ -32,18 +28,20 @@ const misDatos = {
     ],
     estudios: [
         {
-            estudio: "Bachillerato",
-            inicio: "Septiembre de 2018",
-            fin: "Julio de 2020",
-            sede: "Colegio Decroly",
+            estudio: "Secondary school",
+            url: "https://drive.google.com/file/d/1Xn1Ne0vKz43AZZ1Nzr5ndJypwVw6Tycy/view?usp=sharing",
+            inicio: "September 2018",
+            fin: "July 2020",
+            sede: "Decroly School",
             ubicacion: "Venezuela"
         },
         {
-            estudio: "FP en Desarrollo de Aplicaciones Web",
-            inicio: "Septiembre de 2023",
-            fin: "Actualidad",
+            estudio: "FP in Web Application Development",
+            url: "https://www3.gobiernodecanarias.org/medusa/edublog/iesjosemariaperezpulido/",
+            inicio: "September 2023",
+            fin: "Present",
             sede: "IES José María Pérez Pulido",
-            ubicacion: "La Palma, España"
+            ubicacion: "La Palma, Canary Islands, Spain"
         }
     ],
 
@@ -52,26 +50,24 @@ const misDatos = {
     proyectos: [
         {
             url: "https://www.mixapp.moisescap.com",
-            titulo: "MIXAPP",
+            titulo: "MixApp",
             creacion: "2024",
             img: "img/portada_mixapp.png",
-            descripcion: `Es un programa con utilidades variadas. Contiene un tipo test y un juego de memorias sobre Los Simpsons.
-            También posee un formulario con la finalidad de llevar un control de la distribución de un producto`
+            descripcion: `It is a program with various utilities. It includes a quiz and a memory game about The Simpsons. It also has a form designed to keep track of the distribution of a product.`
         },
         {
             url: "https://www.calendario.moisescap.com",
-            titulo: "Calendario",
+            titulo: "Calendar",
             creacion: "2024",
             img: "img/portada_calendario.png",
-            descripcion: `Calendario que muestra los días festivos del 2024 de Canarias. Permite filtrar por islas y marcar como favoritos a los festivos`
+            descripcion: `A calendar that shows the public holidays of 2024 in the Canary Islands. It allows filtering by islands and marking holidays as favorites.`
         },
         {
             url: "https://www.registro.moisescap.com",
-            titulo: "Registro",
+            titulo: "Sign-up",
             creacion: "2024",
             img: "img/portada_regis.png",
-            descripcion: `Es una aplicación que permite crear y eliminar usuarios y guardarlos en una base de datos. La aplicación valida los datos y
-            permite añadir una foto de perfil`
+            descripcion: `It is an application that allows creating and deleting users and saving them in a database. The application validates the data and allows adding a profile picture.`
         }
     ]
 }; 
@@ -103,9 +99,9 @@ function volverArriba(content_general) {
  */
 function navegacion(content_general) {
     let opciones = [
-        "Estudios", 
+        "Studies", 
         // "Experiencia", 
-        "Proyectos"]
+        "Projects"]
 
     let enlaces = ["#estudios", 
         // "#expe", 
@@ -154,7 +150,7 @@ function sobreMi(content_datos_tecn) {
  * Crea el DOM de los datos personales
  */
 function datosPersonales(content_datos_tecn) {
-    const titulos = ["nombre", "nacimiento", "email", "telefono", "ubicacion"];
+    const titulos = ["name", "birth", "email", "phone number", "location"];
 
     let contenedor_datosPerso = contenedor_dato = titulo = info = enlaces = "";
     let contador = 2;
@@ -222,7 +218,7 @@ function conocimientos(content_datos_tecn) {
     contendor_conoc.appendChild(h2);
     contendor_conoc.appendChild(contenedor_img);
 
-    h2.appendChild(document.createTextNode("Tecnologías Web"));
+    h2.appendChild(document.createTextNode("Web Technologies"));
 
     for (let i = 0; i < misDatos.conocimientos.length; i++) {
         let img = document.createElement("img");
@@ -246,23 +242,31 @@ function estudios(content_general) {
     contendor_estudios.classList.add("estud-expe");
     contendor_estudios.setAttribute("id", "estudios");
     contendor_estudios.append(h2, contenedor_est);
-    h2.append("Títulos y Certificaciones");
+    h2.append("Degrees and Certifications");
 
     for (let i = 0; i < aux.length; i++) {
         p = document.createElement("p");
 
-        let titulo = document.createElement("span");
+        let content_titulo = document.createElement("div");
+        let titulo = document.createElement("a");
+        let flecha_link = document.createElement("img");
+
+        titulo.setAttribute("href", aux[i].url);
+        flecha_link.setAttribute("src", "img/flecha_link.png");
+        flecha_link.classList.add("link");
         titulo.textContent = aux[i].estudio;
 
+        content_titulo.classList.add("titulos");
+        content_titulo.append(titulo, flecha_link);
         p.append(
-            titulo,
-            "Inicio: " + aux[i].inicio,
+            content_titulo,
+            "Start: " + aux[i].inicio,
             document.createElement("br"),
-            "Fin: " + aux[i].fin,
+            "End: " + aux[i].fin,
             document.createElement("br"),
-            "Sede: " + aux[i].sede,
+            "School: " + aux[i].sede,
             document.createElement("br"),
-            "Ubicación: " + aux[i].ubicacion,
+            "Location: " + aux[i].ubicacion,
             document.createElement("br"),
             document.createElement("hr"),
         );
@@ -323,7 +327,7 @@ function proyectos(content_general) {
     let contenedor_proyec = content_img = img =titulo_proyec = descripcion = "";
 
     content_general.append(contendor);
-    h2.append("Proyectos")
+    h2.append("Projects")
     contendor.append(h2);
     contendor.append(contendor_proyectos);
     contendor.classList.add("proyectos");
@@ -602,6 +606,16 @@ function estilos_estud_expe(){
     let base = document.querySelectorAll(".estud-expe");
 
     base.forEach((y)=>{
+
+        let links = y.querySelectorAll(".link");
+        links.forEach((z)=>{
+            z.classList.add(
+                "w-[13px]", 
+                "h-[13px]", 
+                "mt-[4px]"
+            );
+        })
+
         let h2 = y.querySelectorAll("h2");
         let contenedor = y.querySelectorAll("div");
 
@@ -655,6 +669,25 @@ function estilos_estud_expe(){
                     "min-[880px]:text-lg"
                 );
             });
+
+            // Estilo para los titulos de cada estudio
+            let a = x.querySelectorAll("a");
+            a.forEach((x)=>{
+                x.classList.add(
+                    "text-base",
+                    "font-semibold",
+                    "min-[880px]:text-lg"
+                );
+            });
+        });
+
+        let cont_titulos = y.querySelectorAll("[class~='titulos']");
+        cont_titulos.forEach((z)=>{
+            z.classList.remove(...z.classList);
+            z.classList.add(
+                "flex", 
+                "gap-2"
+            );
         });
     });
 }
@@ -689,7 +722,6 @@ function estilos_proyectos() {
     );
 
     let links = base.querySelectorAll(".link");
-    console.log(links);
     links.forEach((y)=>{
         y.classList.add(
             "w-[13px]", 
