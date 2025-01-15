@@ -68,6 +68,13 @@ const misDatos = {
             creacion: "2024",
             img: "img/portada_regis.png",
             descripcion: `It is an application that allows creating and deleting users and saving them in a database. The application validates the data and allows adding a profile picture.`
+        },
+        {
+            url: "https://www.gamebox.moisescap.com",
+            titulo: "GameBox",
+            creacion: "2024 - desktop version only",
+            img: "img/gamebox.png",
+            descripcion: `It is a video game library that allows users to explore, rate, and comment on different games in the app.`
         }
     ]
 }; 
@@ -740,6 +747,7 @@ function estilos_proyectos() {
         let img = x.querySelector("img");
         img.classList.add(
             "min-w-[45px]",
+            "max-w-[45px]",
             "transition",
             "hover:scale-[1.1]"
         );
