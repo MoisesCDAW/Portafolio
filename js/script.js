@@ -5,7 +5,7 @@ const misDatos = {
         "Moisés Alejandro Campos Perdomo", 
         "07. 10. 2003", 
         "moisescampos1234@gmail.com", 
-        "(+34) 603 123 456",
+        "Category B",
         "La Palma, Canary Islands, Spain",
         "https://www.linkedin.com/in/moisescap/",
         "https://github.com/MoisesCDAW",
@@ -157,7 +157,7 @@ function sobreMi(content_datos_tecn) {
  * Crea el DOM de los datos personales
  */
 function datosPersonales(content_datos_tecn) {
-    const titulos = ["name", "birth", "email", "phone number", "location"];
+    const titulos = ["name", "birth", "email", "driving license", "location"];
 
     let contenedor_datosPerso = contenedor_dato = titulo = info = enlaces = "";
     let contador = 2;
@@ -169,7 +169,6 @@ function datosPersonales(content_datos_tecn) {
 
     // Crea <div> desde "nombre" hasta "ubicación"
     for (let i = 0; i < titulos.length; i++) {
-        
         contenedor_dato = document.createElement("div");
         contenedor_dato.classList.add("dato");
 
@@ -545,6 +544,11 @@ function estilos_datosPersonales() {
         "gap-3",
         "mt-4"
     );
+
+    base.querySelector(".social").querySelector("h2").classList.add(        
+        "text-sm",
+        "font-semibold"
+    )
 
     enlaces = social.querySelectorAll("a");
     enlaces.forEach((x)=>{
